@@ -1,0 +1,11 @@
+*.class
+bin
+build
+.gradle
+# Eclipse files #
+.project
+.classpath
+.settings
+*.iml
+.idea
+classes/
