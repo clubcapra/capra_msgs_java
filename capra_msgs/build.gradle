@@ -19,3 +19,5 @@ try {
 } catch (NullPointerException e) {
     println("Couldn't find capra_msgs on the ROS_PACKAGE_PATH")
 }
+
+version '0.0.1-SNAPSHOT'

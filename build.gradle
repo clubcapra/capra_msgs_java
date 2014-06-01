@@ -14,6 +14,8 @@
  * the License.
  */
 
+apply plugin: 'maven-publish'
+
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
 }
@@ -57,6 +59,32 @@ subprojects {
       to see what is going on under the hood.
     */
     apply plugin: 'ros-java'
+
+    if(project.hasProperty('deployUser')) {
+      
+        apply plugin: 'maven-publish'
+        
+        publishing {
+            publications {
+                maven(MavenPublication) {
+                    groupId 'ca.etsmtl.capra'
+                    artifactId 'capra_msgs'
+                    version '0.0.1-SNAPSHOT'
+
+                    from components.java
+                }
+            }
+            repositories {
+                maven {
+                    credentials {
+                       username deployUser
+                       password deployPassword
+                    }
+                    url "http://appart.mathgl.com/nexus/content/repositories/capra-snapshot/"
+                }
+            }
+        }
+    }
 }
 
 /*
